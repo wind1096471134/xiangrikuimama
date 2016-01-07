@@ -4,8 +4,17 @@
 
 {% block head %}
 {{title}}
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101284920" charset="utf-8"></script>
 {% endblock %}
 
 {% block content %}
 <p>This is just an awesome page.</p>
+<span id="qqLoginBtn"></span>
+<script type="text/javascript">
+	QC.Login({
+		btnId:"qqLoginBtn"	//id
+	});
+</script>
+<br/>
+<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101284920&redirect_uri=http%3A%2F%2Fwww.xiangrikuimama.com%2Fcallback&scope=get_user_info,list_album,upload_pic,do_like">test</a>
 {% endblock %}
