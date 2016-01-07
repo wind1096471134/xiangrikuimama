@@ -16,8 +16,16 @@ router.get('/', function(req, res, next) {
 				};
 			var https = require('https');
 			https.request(options, function(res) {
+				var output = '';
+        console.log(options.host + ':' + res.statusCode);
+        res.setEncoding('utf8');
+
+        res.on('data', function (chunk) {
+            output += chunk;
+        });
 				res.on('end', function() {
-					res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
+					res.send('accesstoken:'+output);
+					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
 			});
 		}
