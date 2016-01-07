@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}index {{message}} {%endblock%}
+
+{% block head %}
+{{message}}
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101284920" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<p>{{error.status}}</p>
+<pre>{{error.stack}}</pre>
+{% endblock %}
