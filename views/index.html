@@ -10,11 +10,11 @@
 {% block content %}
 <p>This is just an awesome page.</p>
 <span id="qqLoginBtn"></span>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	QC.Login({
 		btnId:"qqLoginBtn"	//id
 	});
-</script>
+</script>-->
 <br/>
-<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101284920&redirect_uri=http%3A%2F%2Fwww.xiangrikuimama.com%2Fcallback&scope=get_user_info,list_album,upload_pic,do_like">test</a>
+<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101284920&redirect_uri=http%3A%2F%2F{{domain}}%2Fcallback%3Ftype%3Djumpauthcode&scope=get_user_info,list_album,upload_pic,do_like">test</a>
 {% endblock %}
