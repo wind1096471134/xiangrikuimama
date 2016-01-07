@@ -15,15 +15,15 @@ router.get('/', function(req, res, next) {
 				method: 'GET'
 				};
 			var https = require('https');
-			var req = https.request(options, function(res) {
+			var req = https.request(options, function(reshttps) {
 				var output = '';
-        console.log(options.host + ':' + res.statusCode);
-        res.setEncoding('utf8');
+        console.log(options.host + ':' + reshttps.statusCode);
+        reshttps.setEncoding('utf8');
 
-        res.on('data', function (chunk) {
+        reshttps.on('data', function (chunk) {
             output += chunk;
         });
-				res.on('end', function() {
+				reshttps.on('end', function() {
 					res.send('accesstoken:'+output);
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
