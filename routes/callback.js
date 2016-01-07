@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 				method: 'GET'
 				};
 			var https = require('https');
-			https.request(options, function(res) {
+			var req = https.request(options, function(res) {
 				var output = '';
         console.log(options.host + ':' + res.statusCode);
         res.setEncoding('utf8');
@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
 			});
+			req.end();
 		}
 	}else{
    res.send('no type param, respond with a resource');
