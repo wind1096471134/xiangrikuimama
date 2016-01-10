@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	var collection = req.db.get('token');
 	collection.find({},{},function(e,docs){
-				console.log('type:'+type(docs));
+				console.log('type:'+typeof(docs));
 				for(var key in docs)
 					console.log('docs['+key+']:'+docs[key]);
         res.send('id:'+docs[0]['openid']);
