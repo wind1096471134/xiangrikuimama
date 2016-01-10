@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	var collection = db.get('token');
+	var collection = req.db.get('token');
 	collection.find({},{},function(e,docs){
         res.send('id:'+docs[0]);
     });
