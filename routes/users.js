@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 					for(var k in v)
 						console.log('v['+k+']:'+v[k]);
 				}
-        res.send('id:'+docs[0]['openid']);
+        res.send('id:'+docs[0]['OpenId']);
     });
   //res.send('respond with a resource');
 });
