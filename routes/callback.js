@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
         });
 				reshttps.on('end', function() {
 					//outputaccess_token=FB625E3B838EACB4660144FDE5441E5D&expires_in=7776000&refresh_token=3066D68B34763C5AF8BE820373BF67F8
-					res.send('accesstoken:'+output);
+					
 					var accessToken='';
 					var expiresTime='';
 					var refreshToken='';
@@ -66,34 +66,47 @@ router.get('/', function(req, res, next) {
 						};
 						console.log("call https2 : /oauth2.0/me?access_token=" + accessToken);
 					try{
-						var https2 = require('https');
-						var req2 = https2.request(options2, function(res2) {
-							console.log(options2.host + ':' + res2.statusCode);
-							var output2 = '';
-							res2.setEncodeing('utf8');
-							res2.on('data', function(chunk2) {
-									output2 += chunk2;
-								});
-							res2.on('end', function(){
-									//callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
-									console.log("getOpenid log:" + output2);
-									var lpos = strpos(output2, "(");
-									var rpos = strrpos(output2, ")");
-									var str  = substr(output2, lpos + 1, rpos - lpos -1);
-									var openidObj = JSON.parse( my_json_string );
+//						var https2 = require('https');
+//						var req2 = https2.request(options2, function(res2) {
+//							console.log(options2.host + ':' + res2.statusCode);
+//							var output2 = '';
+//							res2.setEncodeing('utf8');
+//							res2.on('data', function(chunk2) {
+//									output2 += chunk2;
+//								});
+//							res2.on('end', function(){
+//									//callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
+//									console.log("getOpenid log:" + output2);
+//									var lpos = strpos(output2, "(");
+//									var rpos = strrpos(output2, ")");
+//									var str  = substr(output2, lpos + 1, rpos - lpos -1);
+//									var openidObj = JSON.parse( my_json_string );
+//									console.log("openidObj" + openidObj);
+//									insertDoc(req.db, function(result){
+//										req.db.close;}, 
+//										openidObj.openid, accessToken, expiresTime, refreshToken);
+//								});
+//							
+//							});
+							var request = require('request');
+							request('https://graph.qq.com/oauth2.0/me?access_token='+accessToken, function(error, response, body){
+									console.log('get me openid:'+body);
+									var lpos = strpos(body, "(");
+									var rpos = strrpos(body, ")");
+									var str  = substr(body, lpos + 1, rpos - lpos -1);
+									var openidObj = JSON.parse( str );
 									console.log("openidObj" + openidObj);
 									insertDoc(req.db, function(result){
 										req.db.close;}, 
 										openidObj.openid, accessToken, expiresTime, refreshToken);
 								});
-							
-							});
 						}catch(e){
 							console.log('call https2 err:'+e.message+' name:'+e.name+' code:'+e.number);
 						}finally{
 							console.log('call https2 finally');
 						}
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
+					res.send('accesstoken:'+output);
 				});
 			});
 			req.end();
