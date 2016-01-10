@@ -66,6 +66,7 @@ router.get('/', function(req, res, next) {
 						};
 					var https2 = require('https');
 					var req2 = https2.request(options2, function(res2) {
+						console.log(options2.host + ':' + res2.statusCode);
 						var output2 = '';
 						res2.setEncodeing('utf8');
 						res2.on('data', function(chunk2) {
