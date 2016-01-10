@@ -42,7 +42,8 @@ router.get('/', function(req, res, next) {
 					var expiresTime='';
 					var refreshToken='';
 					var arrOutput = output.split('&');
-					for(x in arrOutput) {
+					for(var i = 0;i < arrOutput.length;++i) {
+						var x = arrOutput[i];
 						console.log("x:" + x);
 						var arr = x.split('=');
 						if(arr[0] == 'access_token') {
