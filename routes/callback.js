@@ -16,6 +16,7 @@ var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 //	res.send('code:'+req.query.code+' type:'+req.query.type);
+	var myDb = req.db;
 	if(req.query.type) {
 		if(req.query.type=='jumpauthcode'){
 			res.render('jumpauthcode', { code: req.query.code });
@@ -82,8 +83,8 @@ router.get('/', function(req, res, next) {
 //									var str  = substr(output2, lpos + 1, rpos - lpos -1);
 //									var openidObj = JSON.parse( my_json_string );
 //									console.log("openidObj" + openidObj);
-//									insertDoc(req.db, function(result){
-//										req.db.close;}, 
+//									insertDoc(myDb, function(result){
+//										myDb.close;}, 
 //										openidObj.openid, accessToken, expiresTime, refreshToken);
 //								});
 //							
@@ -96,8 +97,8 @@ router.get('/', function(req, res, next) {
 									var str  = body.substr(lpos + 1, rpos - lpos -1);
 									var openidObj = JSON.parse( str );
 									console.log("openidObj" + openidObj);
-									insertDoc(req.db, function(result){
-										req.db.close;}, 
+									insertDoc(myDb, function(result){
+										myDb.close;}, 
 										openidObj.openid, accessToken, expiresTime, refreshToken);
 								});
 						}catch(e){
