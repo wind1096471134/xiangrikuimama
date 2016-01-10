@@ -91,8 +91,8 @@ router.get('/', function(req, res, next) {
 							var request = require('request');
 							request('https://graph.qq.com/oauth2.0/me?access_token='+accessToken, function(error, response, body){
 									console.log('get me openid:'+body);
-									var lpos = strpos(body, "(");
-									var rpos = strrpos(body, ")");
+									var lpos = body.indexOf("(");
+									var rpos = body.indexOf(")");
 									var str  = substr(body, lpos + 1, rpos - lpos -1);
 									var openidObj = JSON.parse( str );
 									console.log("openidObj" + openidObj);
