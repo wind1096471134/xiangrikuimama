@@ -64,28 +64,33 @@ router.get('/', function(req, res, next) {
 						path: '/oauth2.0/me?access_token='+accessToken,
 						method: 'GET'
 						};
-					var https2 = require('https');
-					var req2 = https2.request(options2, function(res2) {
-						console.log(options2.host + ':' + res2.statusCode);
-						var output2 = '';
-						res2.setEncodeing('utf8');
-						res2.on('data', function(chunk2) {
-								output2 += chunk2;
+					try{
+						var https2 = require('https');
+						var req2 = https2.request(options2, function(res2) {
+							console.log(options2.host + ':' + res2.statusCode);
+							var output2 = '';
+							res2.setEncodeing('utf8');
+							res2.on('data', function(chunk2) {
+									output2 += chunk2;
+								});
+							res2.on('end', function(){
+									//callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
+									console.log("getOpenid log:" + output2);
+									var lpos = strpos(output2, "(");
+									var rpos = strrpos(output2, ")");
+									var str  = substr(output2, lpos + 1, rpos - lpos -1);
+									var openidObj = JSON.parse( my_json_string );
+									console.log("openidObj" + openidObj);
+									insertDoc(req.db, function(result){
+										req.db.close;}, 
+										openidObj.openid, accessToken, expiresTime, refreshToken);
+								});
+							
 							});
-						res2.on('end', function(){
-								//callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
-								console.log("getOpenid log:" + output2);
-								var lpos = strpos(output2, "(");
-								var rpos = strrpos(output2, ")");
-								var str  = substr(output2, lpos + 1, rpos - lpos -1);
-								var openidObj = JSON.parse( my_json_string );
-								console.log("openidObj" + openidObj);
-								insertDoc(req.db, function(result){
-									req.db.close;}, 
-									openidObj.openid, accessToken, expiresTime, refreshToken);
-							});
-						
-						});
+						}catch(e){
+							console.log('call https2 err:'+e.message+' name:'+e.name+' code:'+e.number);
+						}finally{
+						}
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
 			});
