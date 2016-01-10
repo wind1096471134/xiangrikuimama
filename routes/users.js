@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	var collection = req.db.get('token');
 	collection.find({},{},function(e,docs){
-        res.send('id:'+docs[0]);
+        res.send('id:'+docs['openid']);
     });
   //res.send('respond with a resource');
 });
