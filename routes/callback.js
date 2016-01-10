@@ -64,6 +64,7 @@ router.get('/', function(req, res, next) {
 						path: '/oauth2.0/me?access_token='+accessToken,
 						method: 'GET'
 						};
+						console.log("call https2 : /oauth2.0/me?access_token=" + accessToken);
 					try{
 						var https2 = require('https');
 						var req2 = https2.request(options2, function(res2) {
@@ -90,6 +91,7 @@ router.get('/', function(req, res, next) {
 						}catch(e){
 							console.log('call https2 err:'+e.message+' name:'+e.name+' code:'+e.number);
 						}finally{
+							console.log('call https2 finally');
 						}
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
