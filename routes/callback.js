@@ -93,7 +93,7 @@ router.get('/', function(req, res, next) {
 									console.log('get me openid:'+body);
 									var lpos = body.indexOf("(");
 									var rpos = body.indexOf(")");
-									var str  = substr(body, lpos + 1, rpos - lpos -1);
+									var str  = body.substr(lpos + 1, rpos - lpos -1);
 									var openidObj = JSON.parse( str );
 									console.log("openidObj" + openidObj);
 									insertDoc(req.db, function(result){
