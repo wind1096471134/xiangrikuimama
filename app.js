@@ -8,9 +8,7 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
-db.createCollection("token", function(err, collection){
-    console.log('create token collection'+err);
-});
+var token = db.get('token');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

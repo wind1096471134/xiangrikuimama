@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
-	db.collection('token').insertOne({
+	var token = db.get('token');
+	token.insert({
 		"OpenId":openId,
 		"AccessToken":accessToken,
 		"ExpireTime":exprire,
 		"RefreshToken":rToken
-	}, function(err, result) {
-		console.log("insert a doc into token");
-		callback(result);
-		});
+	});
+	db.close();
 };
 
 /* GET users listing. */
