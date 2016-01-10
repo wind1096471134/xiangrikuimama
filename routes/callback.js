@@ -43,6 +43,7 @@ router.get('/', function(req, res, next) {
 					var refreshToken='';
 					var arrOutput = output.split('&');
 					for(x in arrOutput) {
+						console.log("x:" + x);
 						var arr = x.split('=');
 						if(arr[0] == 'access_token') {
 							accessToken = arr[1];
@@ -54,6 +55,7 @@ router.get('/', function(req, res, next) {
 							refreshToken = arr[1];
 						}
 					}
+					console.log("output:" + output);
 					console.log("accessToken:" + accessToken);
 					var options2 = {
 						host: 'graph.qq.com',
