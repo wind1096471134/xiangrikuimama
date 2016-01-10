@@ -1,6 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
+var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
+	db.collection('token').insertOne({
+		"OpenId":openId,
+		"AccessToken":accessToken,
+		"ExpireTime":exprire,
+		"RefreshToken":rToken
+	}, function(err, result) {
+		console.log("insert a doc into token");
+		callback(result);
+		});
+};
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 //	res.send('code:'+req.query.code+' type:'+req.query.type);
@@ -24,7 +36,50 @@ router.get('/', function(req, res, next) {
             output += chunk;
         });
 				reshttps.on('end', function() {
+					//outputaccess_token=FB625E3B838EACB4660144FDE5441E5D&expires_in=7776000&refresh_token=3066D68B34763C5AF8BE820373BF67F8
 					res.send('accesstoken:'+output);
+					var accessToken='';
+					var expiresTime='';
+					var refreshToken='';
+					var arrOutput = output.split('&');
+					for(x in arrOutput) {
+						var arr = x.split('=');
+						if(arr[0] == 'access_token') {
+							accessToken = arr[1];
+						}
+						if(arr[0] == 'expires_in') {
+							expiresTime = arr[1];
+						}
+						if(arr[0] == 'refresh_token') {
+							refreshToken = arr[1];
+						}
+					}
+					
+					var options2 = {
+						host: 'graph.qq.com',
+						port: 443,
+						path: '/oauth2.0/me?access_token='+accessToken,
+						method: 'GET'
+						};
+					var https2 = require('https');
+					var req2 = https2.request(options2, function(res2) {
+						var output2 = '';
+						res2.setEncodeing('utf8');
+						res2.on('data', function(chunk) {
+								output += chunk;
+							});
+						res2.on('end', function(){
+								//callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
+								var lpos = strpos(output, "(");
+								var rpos = strrpos(output, ")");
+								var str  = substr(output, lpos + 1, rpos - lpos -1);
+								var openidObj = JSON.parse( my_json_string );
+								insertDoc(req.db, function(result){
+									req.db.close;}, 
+									openidObj.openid, accessToken, expiresTime, refreshToken);
+							});
+						
+						});
 					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
 				});
 			});
