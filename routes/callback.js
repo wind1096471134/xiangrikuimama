@@ -107,9 +107,10 @@ router.get('/', function(req, res, next) {
 						}finally{
 							console.log('call https2 finally');
 						}
-						res.cookie('openid', openId, {maxAge:60000, httpOnly:true});
-						res.render('jumpaccesstoken', { accessToken: accessToken, openId: openId });
-//					res.send('accesstoken:'+output);
+						console.log('openId:'+openId);
+//						res.cookie('openid', openId, {maxAge:60000, httpOnly:true});
+//						res.render('jumpaccesstoken', { accessToken: accessToken, openId: openId });
+					res.send('openid:'+openId);
 				});
 			});
 			req.end();
