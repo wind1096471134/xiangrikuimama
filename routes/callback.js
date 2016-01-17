@@ -18,6 +18,7 @@ var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 				try{
 					console.log('find openid:' + openId +' docs keys:'+ Object.keys(docs));
 					if(docs.length===undefined || docs.length==0){
+						console.log('insert one');
 						token.insert({
 							"OpenId":openId,
 							"AccessToken":accessToken,
@@ -29,7 +30,7 @@ var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 				}catch(e){
 					console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
 				}finally{
-					console.log('find openid: finally');
+					console.log('find openid for insert: finally');
 				}
 			}
 		});

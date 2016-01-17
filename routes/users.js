@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 	try{
 		collection.find({},{},function(e,docs){
 				if(e){
-					console.log('find open id error!');
+					console.log('find open id error!'+e);
 	      	res.send('get user id error');
 	      }else{
 					console.log('find user operid docs:'+JSON.stringify(docs));
