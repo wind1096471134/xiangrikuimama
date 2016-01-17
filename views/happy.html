@@ -10,9 +10,11 @@
 <script src=\'http://open.mobile.qq.com/sdk/qqapi.js?_bid=152\'></script>
 <script>
 	function SelectContact() {
+		alert('start call');
     mqq.invoke("QQOfficeOpen", "selectContact", function (t) {
             alert("select:" + t);
         });
+    alert('end call');
 	}
 
 </script>
