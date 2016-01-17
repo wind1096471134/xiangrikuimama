@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 					console.log('find open id error!');
 	      	res.send('get user id error');
 	      }else{
-					console.log('type:'+typeof(docs));
+					console.log('find user operid docs:'+JSON.stringify(docs));
 					for(var key in docs) {
 						var v = docs[key];
 						console.log('docs['+key+']:'+v);
@@ -18,7 +18,10 @@ router.get('/', function(req, res, next) {
 						for(var k in v)
 							console.log('v['+k+']:'+v[k]);
 					}
-	        res.send('id:'+docs[0]['OpenId']);
+					if(docs.length>0)
+						res.send('id:'+docs[0]['OpenId']);
+	        else
+	        	res.send('no id');
 	      }
 	    });
 		}catch(e){
