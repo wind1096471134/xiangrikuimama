@@ -16,7 +16,7 @@ var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 			}else{
 				console.log('find openid:'+openId);
 				try{
-					console.log('find openid:' + openId +' docs:'+ JSON.stringify(obj));
+					console.log('find openid:' + openId +' docs:'+ JSON.stringify(docs));
 				}catch(e){
 					console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
 				}finally{

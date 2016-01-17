@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	var collection = req.db.get('token');
 	collection.find({},{},function(e,docs){
+			if(!e){
 				console.log('type:'+typeof(docs));
 				for(var key in docs) {
 					var v = docs[key];
@@ -14,6 +15,9 @@ router.get('/', function(req, res, next) {
 						console.log('v['+k+']:'+v[k]);
 				}
         res.send('id:'+docs[0]['OpenId']);
+      }else{
+      	res.send('get id error');
+      }
     });
   //res.send('respond with a resource');
 });
