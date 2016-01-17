@@ -14,9 +14,9 @@ var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 				});
 				db.close();
 			}else{
-				console.log('find openid:'+openId);
+				console.log('find openid for insert:'+openId+' docs:'+docs);
 				try{
-					console.log('find openid:' + openId +' docs:'+ JSON.stringify(docs));
+					console.log('find openid:' + openId +' docs keys:'+ Object.keys(docs));
 				}catch(e){
 					console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
 				}finally{
