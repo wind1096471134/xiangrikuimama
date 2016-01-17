@@ -3,13 +3,27 @@ var router = express.Router();
 
 var insertDoc = function(db, callback, openId, accessToken, exprire, rToken) {
 	var token = db.get('token');
-	token.insert({
-		"OpenId":openId,
-		"AccessToken":accessToken,
-		"ExpireTime":exprire,
-		"RefreshToken":rToken
-	});
-	db.close();
+	token.find({"OpenId":openId},function(err, docs){
+			if(err){
+				console.log('not find openid:'+openId+', insert one');
+				token.insert({
+					"OpenId":openId,
+					"AccessToken":accessToken,
+					"ExpireTime":exprire,
+					"RefreshToken":rToken
+				});
+				db.close();
+			}else{
+				console.log('find openid:'+openId);
+				try{
+					console.log('find openid:' + openId +' docs:'+ JSON.stringify(obj));
+				}catch(e){
+					console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
+				}finally{
+					console.log('find openid: finally');
+				}
+			}
+		});
 };
 
 /* GET users listing. */
