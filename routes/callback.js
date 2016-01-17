@@ -56,6 +56,7 @@ router.get('/', function(req, res, next) {
 							refreshToken = arr[1];
 						}
 					}
+					var openId = "";
 					console.log("output:" + output);
 					console.log("accessToken:" + accessToken);
 					var options2 = {
@@ -96,6 +97,7 @@ router.get('/', function(req, res, next) {
 									var str  = body.substr(lpos + 1, rpos - lpos -1);
 									var openidObj = JSON.parse( str );
 									console.log("openidObj" + openidObj);
+									openId = openidObj.openid;
 									insertDoc(myDb, function(result){
 										myDb.close;}, 
 										openidObj.openid, accessToken, expiresTime, refreshToken);
@@ -105,8 +107,9 @@ router.get('/', function(req, res, next) {
 						}finally{
 							console.log('call https2 finally');
 						}
-					//res.render('jumpaccesstoken', { accesstoken: req.query.access_token });
-					res.send('accesstoken:'+output);
+						res.cookie('openid', openId, {maxAge:60, httpOnly:true});
+						res.render('jumpaccesstoken', { accessToken: accessToken, openId: openId });
+//					res.send('accesstoken:'+output);
 				});
 			});
 			req.end();

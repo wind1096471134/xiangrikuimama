@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block title %}index {{title}} {%endblock%}
+
+{% block head %}
+{{title}}
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101284920" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<p>This is just an awesome page.</p>
+<span id="qqLoginBtn"></span>
+<!--<script type="text/javascript">
+	QC.Login({
+		btnId:"qqLoginBtn"	//id
+	});
+</script>-->
+<a href="http://www.baidu.com">baidu</a>
+<a href="tel:15899786761">havenwang电话</a>
+<a href="tel:15889679511">gartingsun电话</a>
+<a href="tel:18665860097">lovekidchen电话</a>
+<h2>获得图片(ios6+)</h2>
+<input type="file" capture="camera" accept="image/*" id="takePictureField">
+    
+<img id="yourimage">
+
+<div id="swatches">
+	<div id="swatch0" class="swatch"></div>
+	<div id="swatch1" class="swatch"></div>
+	<div id="swatch2" class="swatch"></div>
+	<div id="swatch3" class="swatch"></div>
+	<div id="swatch4" class="swatch"></div>
+</div>
+
+<script>
+var desiredWidth;
+$(document).ready(function() {
+    console.log('onReady');
+$("#takePictureField").on("change",gotPic);
+$("#yourimage").load(getSwatches);
+desiredWidth = window.innerWidth;
+    
+    if(!("url" in window) && ("webkitURL" in window)) {
+        window.URL = window.webkitURL;   
+    }
+
+});
+function getSwatches(){
+var colorArr = createPalette($("#yourimage"), 5);
+for (var i = 0; i < Math.min(5, colorArr.length); i++) {
+	$("#swatch"+i).css("background-color","rgb("+colorArr[i][0]+","+colorArr[i][1]+","+colorArr[i][2]+")");
+	console.log($("#swatch"+i).css("background-color"));
+}
+}	
+
+//Credit: https://www.youtube.com/watch?v=EPYnGFEcis4&feature=youtube_gdata_player
+function gotPic(event) {
+    if(event.target.files.length == 1 && 
+       event.target.files[0].type.indexOf("image/") == 0) {
+        $("#yourimage").attr("src",URL.createObjectURL(event.target.files[0]));
+    }
+}
+
+
+    
+</script>    
+<br/>
+<p>欢迎回来，您的openid是：{{openId}}</p>
+<p>您可以<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101284920&redirect_uri=http%3A%2F%2F{{domain}}%2Fcallback%3Ftype%3Djumpauthcode&scope=get_user_info,list_album,upload_pic,do_like">重新登录</a></p>
+{% endblock %}
