@@ -10,13 +10,10 @@
 <script src='http://open.mobile.qq.com/sdk/qqapi.js?_bid=152'></script>
 <script>
 	function SelectContact() {
-		alert('start call');
 		try{
-//    mqq.invoke("QQOfficeOpen", "selectContact", function (t) {
-//            alert("select:" + t);
-//        });
-mqq.invoke("Troop", "joinTroop", {"gc": '203462802'}, function (t) {
-							  			alert("欢迎新同学："+t);
+    mqq.invoke("QQOfficeOpen", "selectContact", function (t) {
+            alert("select:" + t);
+        });
 						        });
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
