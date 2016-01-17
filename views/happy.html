@@ -11,9 +11,12 @@
 <script>
 	function SelectContact() {
 		alert('start call');
-    mqq.invoke("QQOfficeOpen", "selectContact", function (t) {
-            alert("select:" + t);
-        });
+//    mqq.invoke("QQOfficeOpen", "selectContact", function (t) {
+//            alert("select:" + t);
+//        });
+mqq.invoke("Troop", "joinTroop", {"gc": '203462802'}, function (t) {
+							  			alert("欢迎新同学："+t);
+						        });
     alert('end call');
 	}
 
