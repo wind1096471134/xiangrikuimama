@@ -10,18 +10,25 @@
 <script src='http://open.mobile.qq.com/sdk/qqapi.js?_bid=152'></script>
 <script>
 	function SelectContact() {
-		alert('start call');
+//		alert('start call');
 		try{
     mqq.invoke("QQOfficeOpen", "selectContact", {}, function (t) {
             alert("select:" + t);
         });
-//mqq.invoke("Troop", "joinTroop", {"gc": '203462802'}, function (t) {
-//							  			alert("欢迎新同学："+t);
-//						        });
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
 		}finally{
-    	alert('end call');
+//    	alert('end call');
+    }
+	}
+	function SelectselectGroupDiscuss() {
+		try{
+    mqq.invoke("QQOfficeOpen", "selectGroup", {}, function (t) {
+            alert("select:" + t);
+        });
+		}catch(e){
+			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
+		}finally{
     }
 	}
 
@@ -33,5 +40,6 @@
 <p>您还可以<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101284920&redirect_uri=http%3A%2F%2F{{domain}}%2Fcallback%3Ftype%3Djumpauthcode&scope=get_user_info,list_album,upload_pic,do_like">重新登录</a></p>
 <br/>
 
-<button type='button' onclick='SelectContact()'>点击这里</button>
+<button type='button' onclick='SelectContact()'>点击这里选人</button>
+<button type='button' onclick='SelectselectGroupDiscuss()'>点击这里选群</button>
 {% endblock %}
