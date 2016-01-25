@@ -49,8 +49,9 @@ router.get('/', function(req, res, next) {
 						console.log('find openid for insert: finally');
 					}
 				}
+				res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid, docStr:JSON.stringify(docs)});
 			});
-		res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid, docStr:JSON.stringify(docs)});
+		res.render('index', { title: 'xiangrikuimama2', domain:'www.xiangrikuimama.com'});
 	}else{ 
   	res.render('index', { title: 'xiangrikuimama', domain:'www.xiangrikuimama.com'});
   }
