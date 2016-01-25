@@ -33,7 +33,6 @@ var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	var openId = req.cookie.openid;
   var bodyString = JSON.stringify(body);
 	if(req.cookies.openid != undefined && req.cookies.openid.length > 0) {
 		var openId = req.cookies.openid;
