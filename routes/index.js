@@ -1,10 +1,58 @@
 var express = require('express');
 var router = express.Router();
 
+var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid) {
+	var options = {
+		host: 'mmatest.qq.com',
+		port: 80,
+		path: '/tntzhang/myoffice/mqqweb/set_unfinished_msg',
+		method: 'POST',
+    headers: {
+    	'Content-Type': 'application/json',
+    }
+	};
+	var http = require('http');
+	var req = http.request(options, function(reshttp) {
+		var output = '';
+	  console.log(options.host + ':' + reshttp.statusCode);
+	  reshttp.setEncoding('utf8');
+	
+	  reshttp.on('data', function (chunk) {
+	      output += chunk;
+	  });
+		var body = {
+		    "handled_openid":"74378FFD56C5DE41BF659CE5E67C5F5B",
+		    "self_openid":"74378FFD56C5DE41BF659CE5E67C5F5B",
+		    "access_token":"713E0F663E9C83E39AEB83BD026DD287",
+		    "appid":101284920,
+		    "notice_param":{"operate_type":1,"notice_var":3,"notice_version":2},
+		    "sub_items":[{"subitem_id":3, "notice_param":{"operate_type":1,"notice_var":3,"notice_version":2}},{"subitem_id":4, "notice_param":{"operate_type":1,"notice_var":3,"notice_version":2}}]
+		}
+	});
+};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	var openId = req.cookie.openid;
+  var bodyString = JSON.stringify(body);
 	if(req.cookies.openid != undefined && req.cookies.openid.length > 0) {
-		res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid});
+		var openId = req.cookies.openid;
+		var token = req.db.get('token');
+		token.find({"OpenId":openId},function(err, docs){
+				if(err){
+					console.log('not find openid:'+openId+', insert one');
+				}else{
+					console.log('find openid for insert:'+openId+' docs:'+docs);
+					try{
+						console.log('find openid:' + openId +' docs keys:'+ Object.keys(docs));
+					}catch(e){
+						console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
+					}finally{
+						console.log('find openid for insert: finally');
+					}
+				}
+			});
+		res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid, docStr:JSON.stringify(docs)});
 	}else{ 
   	res.render('index', { title: 'xiangrikuimama', domain:'www.xiangrikuimama.com'});
   }
