@@ -46,6 +46,7 @@ var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid, cal
 router.get('/', function(req, res, next) {
 	console.log('start index js');
 	if(req.cookies.openid != undefined && req.cookies.openid.length > 0) {
+		console.log('openid:'+req.cookies.openid);
 		var openId = req.cookies.openid;
 		var token = req.db.get('token');
 		token.find({"OpenId":openId},function(err, docs){
