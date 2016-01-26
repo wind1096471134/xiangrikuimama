@@ -44,23 +44,24 @@ var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid, cal
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	console.log('start index js');
 	if(req.cookies.openid != undefined && req.cookies.openid.length > 0) {
 		var openId = req.cookies.openid;
 		var token = req.db.get('token');
 		token.find({"OpenId":openId},function(err, docs){
 				if(err){
-					console.log('not find openid:'+openId+', insert one');
+					console.log('not find openid:'+openId+';err:'+err);
 				}else{
-					console.log('find openid for insert:'+openId+' docs:'+docs);
+					console.log('find openid for index:'+openId+' docs:'+docs);
 					try{
 						console.log('find openid:' + openId +' docs keys:'+ Object.keys(docs));
 					}catch(e){
 						console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
 					}finally{
-						console.log('find openid for insert: finally');
+						console.log('find openid for index: finally');
 					}
 				}
-				if(docs.length>0) {
+				if(docs!=undefined && docs.length>0) {
 					var userInfo = docs[0];
 					var accessToken = userInfo["AccessToken"];
 					var openId = userInfo["OpenId"];
