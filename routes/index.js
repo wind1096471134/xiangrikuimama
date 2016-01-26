@@ -20,7 +20,7 @@ var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid, cal
 	  reshttp.on('data', function (chunk) {
 	      output += chunk;
 	  });
-	  reshttps.on('end', function() {
+	  reshttp.on('end', function() {
 	  	console.log('http post ok!output: '+output);
 	  	callback(output);
 	  });
