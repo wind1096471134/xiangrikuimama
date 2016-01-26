@@ -79,7 +79,6 @@ router.get('/', function(req, res, next) {
 						return;
 					});
 				}
-				res.send('get error');
 			});
 	}else{ 
   	res.render('index', { title: 'xiangrikuimama', domain:'www.xiangrikuimama.com'});
