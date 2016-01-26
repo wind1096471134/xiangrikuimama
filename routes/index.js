@@ -61,6 +61,7 @@ router.get('/', function(req, res, next) {
 						console.log('find openid for index: finally');
 					}
 				}
+				console.log('doc string:'+JSON.stringify(docs));
 				if(docs!=undefined && docs.length>0) {
 					var userInfo = docs[0];
 					var accessToken = userInfo["AccessToken"];
