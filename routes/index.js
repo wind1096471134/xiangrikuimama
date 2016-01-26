@@ -62,6 +62,7 @@ router.get('/', function(req, res, next) {
 					}
 				}
 				console.log('doc string:'+JSON.stringify(docs));
+				console.log('docs[0] string:'+JSON.stringify(docs[0]));
 				if(docs!=undefined && docs.length>0) {
 					var userInfo = docs[0];
 					var accessToken = userInfo["AccessToken"];
