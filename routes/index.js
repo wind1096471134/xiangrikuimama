@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var CallOfficeCenter = function callOfficeCenter(openid, accessToken, appid, callback) {
+	console.log('start call CallOfficeCenter, openid:'+openid+';accessToken:'+accessToken+';appid:'+appid);
 	var options = {
 		host: 'mmatest.qq.com',
 		port: 80,
@@ -63,14 +64,17 @@ router.get('/', function(req, res, next) {
 				}
 				console.log('doc string:'+JSON.stringify(docs));
 				console.log('docs[0] string:'+JSON.stringify(docs[0]));
-				console.log('docs!=undefined'+(docs!=undefined));
-				console.log('docs.length'+(docs.length));
+				console.log('docs!=undefined:'+(docs!=undefined));
+				console.log('docs.length:'+(docs.length));
+				console.log('docs.length>0:'+(docs.length>0));
 				if(docs!=undefined && docs.length>0) {
+					console.log('find docs and do sth.');
 					var userInfo = docs[0];
 					var accessToken = userInfo["AccessToken"];
 					var openId = userInfo["OpenId"];
 					var appId = 101284920;
 					CallOfficeCenter(openId, accessToken, appId, function(result){
+						console.log('start render happy.html');
 						res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid, docStr:JSON.stringify(docs), retStr:result});
 						return;
 					});
