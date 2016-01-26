@@ -47,15 +47,14 @@ router.get('/', function(req, res, next) {
 	console.log('start index js');
 	if(req.cookies.openid != undefined && req.cookies.openid.length > 0) {
 		console.log('openid:'+req.cookies.openid);
-		var openId = req.cookies.openid;
 		var token = req.db.get('token');
-		token.find({"OpenId":openId},function(err, docs){
+		token.find({"OpenId":req.cookies.openid},function(err, docs){
 				if(err){
-					console.log('not find openid:'+openId+';err:'+err);
+					console.log('not find openid:'+req.cookies.openid+';err:'+err);
 				}else{
-					console.log('find openid for index:'+openId+' docs:'+docs);
+					console.log('find openid for index:'+req.cookies.openid+' docs:'+docs);
 					try{
-						console.log('find openid:' + openId +' docs keys:'+ Object.keys(docs));
+						console.log('find openid:' + req.cookies.openid +' docs keys:'+ Object.keys(docs));
 					}catch(e){
 						console.log('find openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
 					}finally{
