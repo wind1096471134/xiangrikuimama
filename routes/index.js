@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var domainStr = 'www.xiangrikuimama.com'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,12 +33,12 @@ router.get('/', function(req, res, next) {
 					var openId = userInfo["OpenId"];
 					var appId = 101284920;
 					console.log('start render happy.html');
-					res.render('happy',{title:'xiangrikuimama', openId:req.cookies.openid, at:accessToken, appid:appId, docStr:JSON.stringify(docs)});
+					res.render('happy',{title:'xiangrikuimama', domain:domainStr, openId:req.cookies.openid, at:accessToken, appid:appId, docStr:JSON.stringify(docs)});
 					return;
 				}
 			});
 	}else{ 
-  	res.render('index', { title: 'xiangrikuimama', domain:'www.xiangrikuimama.com'});
+  	res.render('index', { title: 'xiangrikuimama', domain:domainStr});
   }
 });
 
