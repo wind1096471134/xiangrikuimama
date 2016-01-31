@@ -15,7 +15,7 @@
 //		alert('start call');
 		try{
     mqq.invoke("QQOfficeOpen", "selectContact", {appId:{{appid}}}, function (t) {
-            alert("select:" + t);
+            alert("select:" + t.contacts);
         });
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
@@ -26,7 +26,7 @@
 	function SelectselectGroupDiscuss() {
 		try{
     mqq.invoke("QQOfficeOpen", "selectGroupDiscuss", {appId:{{appid}}}, function (t) {
-            alert("select:" + t);
+            alert("select:" + t.flag);
         });
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
