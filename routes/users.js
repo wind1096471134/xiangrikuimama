@@ -19,14 +19,14 @@ router.get('/', function(req, res, next) {
 							console.log('v['+k+']:'+v[k]);
 					}
 					if(docs.length>0)
-						res.send('id:'+docs[0]['OpenId']);
+						res.render('users', { at: docs[0]['AccessToken'], openId: docs[0]['OpenId'] });
 	        else
-	        	res.send('no id');
+						res.render('users', { at: '', openId: '' });
 	      }
 	    });
 		}catch(e){
 			console.log('find user openid: err:'+e.message+' name:'+e.name+' code:'+e.number);
-			res.send('get user id error throw');
+			res.render('users', { at: '', openId: 'get user id error throw:' +e.message+' name:'+e.name+' code:'+e.number});
 		}finally{
 			console.log('find user openid: finally');
 		}
