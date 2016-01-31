@@ -126,7 +126,7 @@ router.get('/', function(req, res, next) {
 										myDb.close;}, 
 										openidObj.openid, accessToken, expiresTime, refreshToken);
 									console.log('openId:'+openId);
-									res.cookie('openid', openId, {maxAge:10*60*000, httpOnly:true});
+									res.cookie('openid', openId, {maxAge:10*60*1000, httpOnly:true});
 									res.render('jumpaccesstoken', { at: accessToken, openId: openId });
 //									res.send('openid:'+openId);
 								});
