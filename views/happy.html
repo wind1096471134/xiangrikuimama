@@ -37,7 +37,7 @@
 	function SetExternAction(){
 		alert("start call SetExternAction");
 
-		var params = {appId:{{appId}}, action:[{title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {alert( "cancel");})};
+		var params = {appId:{{appid}}, action:[{title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {alert( "cancel");})};
 		try{
     	mqq.invoke("QQOfficeOpen", "externAction", {});
 		}catch(e){
