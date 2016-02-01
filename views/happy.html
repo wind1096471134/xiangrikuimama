@@ -34,20 +34,7 @@
     }
 	}
 	
-	function SetExternAction(){
-		alert("start call SetExternAction");
-		var	params = {appId: {{appId}},  
-						      action: [{id: 1, callback: function(result){alert('分享回调结果：'+result); }}, 
-						    		       {title: 'clickme', callback:function(){alert('call click me'); }}],  
-			            cancelCallback: function( ){alert('call cancel'); } }
-			
-		try{
-    	mqq.invoke("QQOfficeOpen", "externAction", params);
-		}catch(e){
-			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
-		}finally{
-    }
-	}
+
 
 </script>
 <p>This is just an awesome page.</p> 
@@ -60,10 +47,7 @@
 <br/>
 
 <button type='button' onclick='SelectContact()'>点击这里选人</button>
-<br/>
 <button type='button' onclick='SelectselectGroupDiscuss()'>点击这里选群</button>
-<br/>
-<button type='button' onclick='SetExternAction()'>点击设置右上角菜单</button>
 
 
 <!-- nnnnnnnnnnnnnnnnnnnnnnnn-->
