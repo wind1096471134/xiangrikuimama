@@ -35,12 +35,17 @@
 	}
 	
 	function setExternAction(param){
-		var params;
-			params = {appId: {{appId}},  
-						    action: [{id: 1, callback: function(result){alert('分享回调结果：'+result); }}, 
-						    		     { title: 'clickme', callback:function(){alert('call click me'+); }}],  
-			          cancelCallback: function( ){alert('call cancel'); } }
-			qqOffice.externAction(params);
+		var	params = {appId: {{appId}},  
+						      action: [{id: 1, callback: function(result){alert('分享回调结果：'+result); }}, 
+						    		       {title: 'clickme', callback:function(){alert('call click me'); }}],  
+			            cancelCallback: function( ){alert('call cancel'); } }
+			
+		try{
+    	mqq.invoke("QQOfficeOpen", "externAction", params);
+		}catch(e){
+			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
+		}finally{
+    }
 	}
 
 </script>
