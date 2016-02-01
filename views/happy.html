@@ -34,7 +34,8 @@
     }
 	}
 	
-	function setExternAction(param){
+	function SetExternAction(){
+		alert("start call SetExternAction");
 		var	params = {appId: {{appId}},  
 						      action: [{id: 1, callback: function(result){alert('分享回调结果：'+result); }}, 
 						    		       {title: 'clickme', callback:function(){alert('call click me'); }}],  
@@ -62,7 +63,7 @@
 <br/>
 <button type='button' onclick='SelectselectGroupDiscuss()'>点击这里选群</button>
 <br/>
-<button type='button' onclick='setExternAction()'>点击设置右上角菜单</button>
+<button type='button' onclick='SetExternAction()'>点击设置右上角菜单</button>
 
 
 <!-- nnnnnnnnnnnnnnnnnnnnnnnn-->
