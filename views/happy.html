@@ -197,6 +197,7 @@ function externAction(param){
 
 function selectContact( ){
 	qqOffice.selectContact({appId:{{appid}}}, function(result){
+		alert("select:" + result.contacts);
 		var r = eval('(' + result + ')');
 		if(r.result == 1){
 			var ids = r.contacts;
