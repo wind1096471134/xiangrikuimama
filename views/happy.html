@@ -59,6 +59,15 @@
 	function GetNetworkStatus(){
 		var params = {appId:{{appid}}};
 		alert('aaa'+params);
+		try{
+    	mqq.invoke("QQOfficeOpen", "getNetworkInfo", params, function(t){
+    		alert('enable:'+t.enable);
+    	});
+		}catch(e){
+			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
+		}finally{
+			alert('finished');
+    }
 
 	}
 
