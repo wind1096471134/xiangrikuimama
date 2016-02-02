@@ -61,7 +61,7 @@
 		alert('aaa'+params);
 		try{
     	mqq.invoke("QQOfficeOpen", "getNetworkInfo", params, function(t){
-    		alert('enable:'+t.enable);
+    		alert('enable:'+t.enable+' type:'+t.type);
     	});
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
