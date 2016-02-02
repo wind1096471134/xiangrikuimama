@@ -37,7 +37,7 @@
 	function SetExternAction(){
 		alert("start call SetExternAction");
 
-		var params = {appId:{{appid}}, action:[{id:1, callback:qqOffice.callback(function(result){alert("分享："+result);})}, {title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {alert( "cancel");})};
+		var params = {appId:{{appid}}, action:[{id:1, callback:qqOffice.callback(function(result){alert("分享retCode："+result.retCode);})}, {title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {alert( "cancel");})};
 		try{
     	mqq.invoke("QQOfficeOpen", "externAction", params);
 		}catch(e){
