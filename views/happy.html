@@ -148,7 +148,11 @@ var p_apiEleInvokeFormat;
 var p_apiEleInvokeResult;
 
 var qq = {};
+try{
 qq.localplatform = qqOffice.getPlatform();
+}catch(e){
+	qq.localplatform = qqOffice.getPaltform();
+}
 
 document.addEventListener("DOMContentLoaded", onLoad, false);
 
@@ -170,7 +174,11 @@ function onLoad() {
 }
 
 function getPlatform( ){
-	m_apiEleInvokeResult.innerText = "\n当前环境为：" + qqOffice.getPlatform();
+	try{
+		m_apiEleInvokeResult.innerText = "\n当前环境为：" + qqOffice.getPlatform();
+	}catch(e){
+		m_apiEleInvokeResult.innerText = "\n当前环境为：" + qqOffice.getPaltform();
+	}
 }
 
 function getVersion( ){
