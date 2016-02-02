@@ -119,7 +119,7 @@ var p_apiEleInvokeFormat;
 var p_apiEleInvokeResult;
 
 var qq = {};
-qq.localplatform = qqOffice.getPaltform();
+qq.localplatform = qqOffice.getPlatform();
 
 document.addEventListener("DOMContentLoaded", onLoad, false);
 
@@ -141,11 +141,12 @@ function onLoad() {
 }
 
 function getPlatform( ){
-	m_apiEleInvokeResult.innerText = "\n当前环境为：" + qqOffice.getPaltform();
+	m_apiEleInvokeResult.innerText = "\n当前环境为：" + qqOffice.getPlatform();
 }
 
 function getVersion( ){
-	m_apiEleInvokeResult.innerText = "\n当前办公开放版本为：" + qqOffice.getVersion({appId:123}, function(param){ 
+	m_apiEleInvokeResult.innerText = "\n当前办公开放版本为：" + qqOffice.getVersion({appId:{{appid}}}, function(param){ 
+		alert('ver:'+param.version);
 		var version = eval('(' + param + ')');
 		m_apiEleInvokeResult.innerText = "version: " + version.version;});
 }
@@ -190,7 +191,7 @@ function externAction(param){
 	case 2:
 		params = {appId:101284920, action:[{id:1, callback:qqOffice.callback(function(result){ 
      	   var r = eval('(' + result + ')');
-    	   if(r.result == 0){
+    	   if(r.retCode == 0){
     		   m_apiEleInvokeResult.innerText = "share success";
     	   }
     	  
@@ -200,7 +201,7 @@ function externAction(param){
 		params = {appId:101284920, action:[{title:"item1", callback: qqOffice.callback(function(){ alert("点击item1");})}, {
 				id:1, callback:qqOffice.callback(function(result){
 	     	   var r = eval('(' + result + ')');
-	    	   if(r.result == 0){
+	    	   if(r.retCode == 0){
 	    		   m_apiEleInvokeResult.innerText = "share success";
 	    	   }
 	    	  
