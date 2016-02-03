@@ -45,6 +45,15 @@
 		}finally{
     }
 	}
+	function ClearExternAction() {
+		var params = {appId:{{appid}}, action:[]};
+		try{
+    	mqq.invoke("QQOfficeOpen", "externAction", params);
+		}catch(e){
+			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
+		}finally{
+    }
+	}
 	function GetVersion(){
 		var params = {appId:{{appid}}};
 		try{
@@ -86,6 +95,8 @@
 <button type='button' onclick='SelectselectGroupDiscuss()'>点击这里选群</button>
 <br/>
 <button type='button' onclick='SetExternAction()'>点击设置右上角菜单</button>
+<br/>
+<button type='button' onclick='ClearExternAction()'>点击清楚右上角菜单</button>
 <br/>
 <button type='button' onclick='GetVersion()'>点击获得版本</button>
 <br/>
