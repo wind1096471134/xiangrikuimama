@@ -201,6 +201,7 @@ function getVersion( ){
 
 function getNetworkInfo( ){
 	qqOffice.getNetworkInfo({appId:101284920}, function(param){
+		alert('type:'+param.type);
 		var params = eval('(' + param + ')');
 		var enable;
 		var type;
