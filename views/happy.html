@@ -58,6 +58,7 @@
 		var params = {appId:{{appid}}};
 		try{
     	mqq.invoke("QQOfficeOpen", "getVersion", params, function(t){
+    		alert('t:'+t);
     		alert('ver:'+t.version);
     	});
 		}catch(e){
@@ -67,7 +68,6 @@
 	}
 	function GetNetworkStatus(){
 		var params = {appId:{{appid}}};
-		alert('aaa'+params);
 		try{
     	mqq.invoke("QQOfficeOpen", "getNetworkInfo", params, function(t){
     		alert('enable:'+t.enable+' type:'+t.type);
@@ -75,7 +75,6 @@
 		}catch(e){
 			alert('call err:'+e.message+' name:'+e.name+' code:'+e.number);
 		}finally{
-			alert('finished');
     }
 
 	}
