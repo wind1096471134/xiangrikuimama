@@ -192,16 +192,12 @@ function getPlatform( ){
 }
 
 function getVersion( ){
-	m_apiEleInvokeResult.innerText = "\n当前办公开放版本为：" + qqOffice.getVersion({appId:{{appid}}}, function(param){ 
-		alert('ver:'+param.version);
-		var version = eval('(' + param + ')');
-		m_apiEleInvokeResult.innerText = "version: " + version.version;});
+		qqOffice.getVersion({appId:{{appid}}}, function(param){ 
+		m_apiEleInvokeResult.innerText = "version: " + param.version;});
 }
 
 function getNetworkInfo( ){
-	qqOffice.getNetworkInfo({appId:101284920}, function(param){
-		alert('type:'+param.type);
-		var params = eval('(' + param + ')');
+	qqOffice.getNetworkInfo({appId:{{appid}}}, function(params){
 		var enable;
 		var type;
 		if(params.enable == 1){
@@ -230,25 +226,24 @@ function getNetworkInfo( ){
 	});
 }
 
+
 function externAction(param){
 	var params;
 	switch(param){
 	case 1:
-		params = {appId:101284920, action:[{title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {m_apiEleInvokeResult.innerText = "cancel";})};
+		params = {appId:{{appid}}, action:[{title:"item1", callback:qqOffice.callback(function(){ alert("点击item1");})} ], cancelCallback:qqOffice.callback(function() {m_apiEleInvokeResult.innerText = "cancel";})};
 		break;
 	case 2:
-		params = {appId:101284920, action:[{id:1, callback:qqOffice.callback(function(result){ 
-     	   var r = eval('(' + result + ')');
-    	   if(r.retCode == 0){
+		params = {appId:{{appid}}, action:[{id:1, callback:qqOffice.callback(function(r){ 
+    	   if(r.result == 0){
     		   m_apiEleInvokeResult.innerText = "share success";
     	   }
     	  
     	})}]};
 		break;
 	case 3:
-		params = {appId:101284920, action:[{title:"item1", callback: qqOffice.callback(function(){ alert("点击item1");})}, {
-				id:1, callback:qqOffice.callback(function(result){
-	     	   var r = eval('(' + result + ')');
+		params = {appId:{{appid}}, action:[{title:"item1", callback: qqOffice.callback(function(){ alert("点击item1");})}, {
+				id:1, callback:qqOffice.callback(function(r){
 	    	   if(r.retCode == 0){
 	    		   m_apiEleInvokeResult.innerText = "share success";
 	    	   }
@@ -260,8 +255,7 @@ function externAction(param){
 }
 
 function selectContact( ){
-	qqOffice.selectContact({appId:101284920}, function(result){
-		var r = eval('(' + result + ')');
+	qqOffice.selectContact({appId:{{appid}}}, function(r){
 		if(r.result == 1){
 			var ids = r.contacts;
 			m_apiEleInvokeResult.innerText = "\nopenId:"
@@ -276,8 +270,7 @@ function selectContact( ){
 }
 
 function selectGroupDiscuss( ){
-	qqOffice.selectGroupDiscuss({appId:101284920}, function(result){
-		var r = eval('(' + result + ')');
+	qqOffice.selectGroupDiscuss({appId:{{appid}}}, function(r){
 		if(r.result == 1){
 			m_apiEleInvokeResult.innerText = "\n用户openId：" + r.openId;
 			if(r.flag == 2){
